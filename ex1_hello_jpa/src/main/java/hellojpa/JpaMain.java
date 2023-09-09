@@ -115,7 +115,14 @@ public class JpaMain {
 //            System.out.println("==============");
 //            tx.commit();
 
-
+            /**
+             * 플러시
+             */
+            Member member = new Member(3L, "A");
+            em.persist(member);
+            em.flush();
+            System.out.println("==============");
+            tx.commit();
 
 
         } catch (Exception e) {
