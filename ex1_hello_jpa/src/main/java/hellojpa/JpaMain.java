@@ -118,9 +118,25 @@ public class JpaMain {
             /**
              * 플러시
              */
-            Member member = new Member(3L, "A");
-            em.persist(member);
-            em.flush();
+//            Member member = new Member(3L, "A");
+//            em.persist(member);
+//            em.flush();
+//            System.out.println("==============");
+//            tx.commit();
+
+            /**
+             * 준영속
+             */
+            Member member = em.find(Member.class, 101L);
+            member.setName("C");
+
+            // 엔터티 객체 하나만
+            em.detach(member);
+            // 영속성 컨텍스트 전체 초기화
+            em.clear();
+            // 영속성 컨텍스트 종료
+            em.close();
+
             System.out.println("==============");
             tx.commit();
 
