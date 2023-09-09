@@ -1,4 +1,4 @@
-## 영속성컨텍스트
+## session3. 영속성컨텍스트
 
 ### 엔터티 매니저 팩토리와 엔터티 매니저
 ![jpa.png](..%2Fpicture%2Fjpa.png)
@@ -48,7 +48,7 @@
 ### 변경 감지(dirty checking)
 - 1차 캐시 내부에서 pk, entity, 스냅샷 3개의 데이터를 보관한다.
 - 그래서 사실 최초의 데이터 값은 스냅샷을 떠둔다.
-- 그리고 내부적으로 flush를 호출할 때 마지막 데이터값과 스냅샷 값을 비교한다.
+- 그리고 내부적으로 flush를 호출할 때 마지막 데이터값과 스냅샷 값을 비교한다.ㅌ
 - 변경사항이 있을 경우 update 쿼리를 작성하여 db로 날린다.
 
 ### 플러시
@@ -67,3 +67,32 @@
   - em.detach(entity)
   - em.clear()
   - em.close()
+
+## session4. 엔터티 매핑
+
+### @Entity
+- @Entity가 붙으면 JPA가 관리하는 객체가 됨
+- 기본 생성자 필수
+
+### @Table
+- 엔터티와 매핑할 테이블 지정
+- 옵션
+  - name : 매핑할 테이블 이름(default = entityName)
+  - catalog : db catalog 에 매핑
+  - schema : db schema 에 매핑
+  - uniqueConstraints : ddl 생성시 유니크 제약조건 생성
+
+### 데이터베이스 스키마 자동 생성
+- DDL을 애플리케이션 실행 시점에 자동으로 생성
+- 이렇게 생성된 DDL은 **개발 장비에**서만 사용해야 한다.
+- hibernate.hbm2ddl.auto
+  - create (drop+create)
+  - create-drop, create와 같으니 종료 시점에 테이블 drop
+  - update, 변경 부분만 반영
+  - validate, 엔터티와 테이블이 잘 매핑되었는지 확인해줌
+  - none, 사용하지 않음
+- 운영장비에는 **절대로** create, create-drop, update를 사용하면 안된다!!!
+- 개발 초기에는 crate or update
+- 테스트(개발) 서버는 update or validate
+- 스테이징과 운영 서버는 validate or none
+- 
