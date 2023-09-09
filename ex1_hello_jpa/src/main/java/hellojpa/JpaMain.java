@@ -127,16 +127,51 @@ public class JpaMain {
             /**
              * 준영속
              */
-            Member member = em.find(Member.class, 101L);
-            member.setName("C");
+//            Member member = em.find(Member.class, 101L);
+//            member.setName("C");
+//
+//            // 엔터티 객체 하나만
+//            em.detach(member);
+//            // 영속성 컨텍스트 전체 초기화
+//            em.clear();
+//            // 영속성 컨텍스트 종료
+//            em.close();
+//
+//            System.out.println("==============");
+//            tx.commit();
 
-            // 엔터티 객체 하나만
-            em.detach(member);
-            // 영속성 컨텍스트 전체 초기화
-            em.clear();
-            // 영속성 컨텍스트 종료
-            em.close();
+            /**
+             * 엔터티 매핑 - IDENTITY 전략
+             */
+//            Member member1 = new Member();
+//            member1.setName("as");
+//            System.out.println("==============");
+//            em.persist(member1);
+//            System.out.println("member1.getId() = " + member1.getId());
+//            System.out.println("==============");
+//            tx.commit();
 
+
+            /**
+             * 엔터티 매핑 - IDENTITY 전략
+             */
+            Member member1 = new Member();
+            member1.setName("A");
+
+            Member member2 = new Member();
+            member1.setName("B");
+
+            Member member3 = new Member();
+            member1.setName("C");
+
+            Member member4 = new Member();
+            member1.setName("D");
+
+            System.out.println("==============");
+            em.persist(member1);
+            em.persist(member2);
+            em.persist(member3);
+            em.persist(member4);
             System.out.println("==============");
             tx.commit();
 

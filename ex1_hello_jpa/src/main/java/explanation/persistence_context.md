@@ -106,3 +106,29 @@
 - 필드 매핑 X
 - DB에 저장 X, 조회 X
 - 주로 메모리상에서만 임시로 어떤 값을 보관하고 싶을 때 사용한다.
+
+### 기본키 매핑
+- @Id, @GeneratedValue
+
+### @GeneratedValue
+- 생성전략이 기본적으로 4가지(default 는 AUTO)
+  - TABLE, SEQUENCE, IDENTITY, AUTO;
+  - AUTO일 경우 방언에 따라 기본전략이 결정
+
+### IDENTITY 전략
+- 기본 키 생성을 데이터베이스에 위임
+- persist 를 해야 시퀀스를 알 수 있음
+- JPA는 보통 트랜잭션 커밋 시점에 INSERT SQL 실행
+- AUTO_ INCREMENT는 데이터베이스에 INSERT SQL을 실행한 이후에 ID 값을 알 수 있음
+- 버퍼링 기능(쓰기 지연) 기능을 사용할 수 없음
+
+### SEQUENCE 전략
+- 시퀀스 오브젝트를 만들어서 거기서 값을 가져옴
+- allocationSize 옵션을 사용하면 한번에 시퀀스를 옵션만큼 가져올 수 있음(default = 50)
+  - 이걸 통해 최적화 가능
+
+
+### 권장하는 식별자 전략
+- 기본키 제약 조건: not null, unique, immutable
+- 권장 : Long + 대체 키 + 키 생성전략 사용
+
