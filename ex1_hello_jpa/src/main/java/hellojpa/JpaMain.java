@@ -55,6 +55,23 @@ public class JpaMain {
 //                System.out.println("member = " + member.getName());
 //            }
 
+            /**
+             * 영속성 컨텍스트
+             */
+            // 비영속
+            Member member = new Member();
+            member.setId(100L);
+            member.setName("helloA");
+
+            //영속
+            em.persist(member);
+
+            //준영속
+            em.detach(member);
+
+            //삭제
+            em.remove(member);
+
         } catch (Exception e) {
             tx.rollback();
         } finally {
