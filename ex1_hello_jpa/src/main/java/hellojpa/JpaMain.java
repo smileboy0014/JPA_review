@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -58,19 +57,66 @@ public class JpaMain {
             /**
              * 영속성 컨텍스트
              */
-            // 비영속
-            Member member = new Member();
-            member.setId(100L);
-            member.setName("helloA");
+//            // 비영속
+//            Member member = new Member();
+//            member.setId(100L);
+//            member.setName("helloA");
+//
+//            //영속
+//            em.persist(member);
+//
+//            //준영속
+//            em.detach(member);
+//
+//            //삭제
+//            em.remove(member);
 
-            //영속
-            em.persist(member);
+            /**
+             * 영속성 컨텍스트 1차 캐시 조회
+             */
+//            Member member = new Member();
+//            member.setId(100L);
+//            member.setName("helloA");
+//
+//            //영속, 1차 캐시에만 저장
+//            em.persist(member);
+//
+//            // 여기서는 db에서 조회하는 것이 아니라 1차 캐시에서 조회함
+//            Member findMember = em.find(Member.class, 100L);
+//            System.out.println("findMember.getName() = " + findMember.getName());
+//
+//            tx.commit();
 
-            //준영속
-            em.detach(member);
+            /**
+             * 영속성 컨텍스트 동일성 보장
+             */
+//            Member findMember1 = em.find(Member.class, 100L);
+//            Member findMember2 = em.find(Member.class, 100L);
+//            System.out.println("result = " + (findMember1 == findMember2)); //동일성 비교 true
 
-            //삭제
-            em.remove(member);
+            /**
+             * 쓰기 지연
+             */
+//            Member member1 = new Member(101L, "A");
+//            Member member2 = new Member(102L, "B");
+//
+//            em.persist(member1);
+//            em.persist(member2);
+//
+//            System.out.println("==============");
+//
+//            tx.commit();
+
+            /**
+             * 변경 감지
+             */
+//            Member member = em.find(Member.class, 101L);
+//            member.setName("C");
+//            System.out.println("==============");
+//            tx.commit();
+
+
+
 
         } catch (Exception e) {
             tx.rollback();
