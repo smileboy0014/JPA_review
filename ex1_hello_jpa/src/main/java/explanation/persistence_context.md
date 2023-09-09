@@ -95,4 +95,14 @@
 - 개발 초기에는 crate or update
 - 테스트(개발) 서버는 update or validate
 - 스테이징과 운영 서버는 validate or none
-- 
+
+### 필드와 컬럼 매핑
+
+### @Enumerated
+- 자바 enum 타입을 매핑할 떄 사용
+- EnumType.ORDINAL 을 사용하지 말자!(String 옵션을 사용 권장)
+
+### @Transit
+- 필드 매핑 X
+- DB에 저장 X, 조회 X
+- 주로 메모리상에서만 임시로 어떤 값을 보관하고 싶을 때 사용한다.
